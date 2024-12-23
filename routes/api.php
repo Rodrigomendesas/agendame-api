@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\Auth\RegisterRequest;
@@ -29,6 +30,8 @@ class RegisterController extends Controller
 
         $input['password'] = bcrypt($input['password']);
         $user = User::query()->create($input);
+
+        UserRegistered::dispatch($user);
 
         return new UserResource($user);
     }
