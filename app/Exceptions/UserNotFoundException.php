@@ -5,9 +5,9 @@ namespace App\Exceptions;
 use Exception;
 use App\Traits\RenderToJson;
 
-class UserHasBeenTakenException extends Exception
+class UserNotFoundException extends Exception
 {
     use RenderToJson;
-    protected $message = 'This user already exists';
+    protected $message = 'This user does not exist';
     protected $code = 400;
 }
