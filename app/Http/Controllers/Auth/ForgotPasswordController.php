@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Events\ForgotPasswordRequested;
 use App\Exceptions\UserNotFoundException;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 
@@ -20,8 +21,11 @@ class ForgotPasswordController extends Controller
             throw new UserNotFoundException();
         }
 
-        $user->resetPasswordTokens()
+        $token = $user->resetPasswordTokens()
             ->create(['token' => Str::upper(Str::random(6))]);
-        $user->save();
+
+        ForgotPasswordRequested::dispatch($user, $token->token);
+
+        // $user->save();
     }
 }
