@@ -9,5 +9,5 @@ class InvalidAuthenticationException extends Exception
 {
     use RenderToJson;
     protected $message = 'Invalid authentication';
-    protected $code = 401;
+    protected $code = 400;
 }
