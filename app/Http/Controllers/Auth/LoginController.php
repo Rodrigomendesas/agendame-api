@@ -37,7 +37,11 @@ class LoginController extends Controller{
         if (!auth()->attempt($input)) {
             throw new InvalidAuthenticationException();
         }
-        request()->session()->regenerate();
-        return new UserResource(auth()->user());
+        // request()->session()->regenerate();
+
+        $user = auth()->user();
+        $user->loadMissing('teams');
+
+        return new UserResource($user);
     }
 }

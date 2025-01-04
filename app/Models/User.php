@@ -47,4 +47,13 @@ class User extends Authenticatable
     public function resetPasswordTokens(){
         return $this->hasMany(PasswordResetToken::class);
     }
+
+    public function teams()
+    {
+        return $this->belongsToMany(
+            related: Team::class,
+            table: 'model_has_roles',
+            foreignPivotKey: 'model_id',
+            relatedPivotKey: 'team_id');
+    }
 }
