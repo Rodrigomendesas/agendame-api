@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('password_reset_tokens', function (Blueprint $table) {
-            $table->id()->after('email');
-            $table->foreignId('user_id')->after('id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->dropColumn('email');
-        });
+        // Schema::table('password_reset_tokens', function (Blueprint $table) {
+        //     $table->id()->after('email');
+        //     $table->foreignId('user_id')->after('id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+        //     $table->dropColumn('email');
+        // });
     }
 
     /**
@@ -23,11 +23,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->after('id');
-            $table->dropForeign(['user_id']);
-            $table->dropColumn(['id', 'user_id']);
+        // Schema::table('password_reset_tokens', function (Blueprint $table) {
+        //     $table->string('email')->after('id');
+        //     $table->dropForeign(['user_id']);
+        //     $table->dropColumn(['id', 'user_id']);
 
-        });
+        // });
     }
 };

@@ -14,12 +14,39 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roleManager = Role::create([
-            'name' => 'manager',
+        $admin = Role::create([
+            'name' => 'admin',
+
         ]);
-        $permissionManager = Permission::create([
+        $atendente = Role::create([
+            'name' => 'atendente',
+
+        ]);
+        $cliente = Role::create([
+            'name' => 'cliente',
+
+        ]);
+
+        $permissionDeleteUser = Permission::create([
             'name' => 'delete-user',
         ]);
-        $roleManager->givePermissionTo($permissionManager);
+        $permissionCreateUser = Permission::create([
+            'name' => 'create-user',
+        ]);
+        $permissionUpdateUser = Permission::create([
+            'name' => 'update-user',
+        ]);
+
+        $admin->givePermissionTo($permissionDeleteUser);
+        $admin->givePermissionTo($permissionCreateUser);
+        $admin->givePermissionTo($permissionUpdateUser);
+
+        // $roleManager = Role::create([
+        //     'name' => 'manager',
+        // ]);
+        // $permissionManager = Permission::create([
+        //     'name' => 'delete-user',
+        // ]);
+        // $roleManager->givePermissionTo($permissionManager);
     }
 }

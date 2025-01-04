@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -32,6 +33,15 @@ class RegisterController extends Controller
         $input['password'] = bcrypt($input['password']);
         $input['token'] = Str::uuid();
         $user = User::query()->create($input);
+
+        $team =Team::query()->create([
+            'token' => Str::uuid(),
+            'name' => $input['first_name'] . ' Team',
+        ]);
+
+        setPermissionsTeamId($team->id);
+
+        $user->assignRole('admin');
 
         UserRegistered::dispatch($user);
 

@@ -17,7 +17,7 @@ Route::post('verify-email', VerifyEmailController::class);
 Route::post('forgot-password', ForgotPasswordController::class);
 Route::post('reset-password', ResetPasswordController::class);
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'team'])->group(function () {
     # creates 'me' layer that treats everything about logged in user
     Route::get('me', [MeController::class, 'show']);
 });
