@@ -40,7 +40,6 @@ class LoginController extends Controller{
         // request()->session()->regenerate();
 
         $user = auth()->user();
-        $user->loadMissing('teams');
 
         return new UserResource($user);
     }

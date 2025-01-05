@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
@@ -40,7 +39,6 @@ class RegisterController extends Controller
         ]);
 
         setPermissionsTeamId($team->id);
-
         $user->assignRole('admin');
 
         $user->default_team_id = $team->id;
